@@ -4,6 +4,7 @@
 
 - [DEMO](https://sheltered-brushlands-27967.herokuapp.com)
 
+
 # CopyRight
 Copyright © 2020, 11. Released under the MIT License.
 
@@ -14,6 +15,22 @@ Copyright © 2020, 11. Released under the MIT License.
 - Protect shop routes with JOSN WEB TOKEN
 - Grant access for Adminstrator to login to admin routes
 - Grant access for Adminstrator to create & edit & delete shops
+
+
+### Shop Page
+- Shop Page allow user with line login advance
+![image](https://github.com/libterty/Line-App-Web/blob/master/src/assets/ShopShop.png)
+
+### Admin Page
+- Admin Page require Adminstrator login first
+- The routes for access is [here](https://sheltered-brushlands-27967.herokuapp.com/signin)
+    ```bash
+        // you will require adminstrator email && password to login 
+        email: root@example.com
+        password: 12345678
+    ```
+- After loging Adminstrator is granted to manage products with CRUD
+![image](https://github.com/libterty/Line-App-Web/blob/master/src/assets/ShopCMS.png)
 
 ## Environment Setup
 
@@ -46,3 +63,4 @@ npm start
 
 # Author
 - [11](https://github.com/libterty)
+
