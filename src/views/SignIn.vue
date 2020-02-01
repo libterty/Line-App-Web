@@ -48,6 +48,7 @@
 
 <script>
 import Request from '../api';
+import { Toast } from '../utils/helpers';
 const request = new Request();
 
 export default {
@@ -62,18 +63,37 @@ export default {
     },
     methods: {
         async onSubmit(evt) {
-            evt.preventDefault();
-            confirm('Confirm to SignIn ?');
-            if (this.form.email !== '' || this.form.password !== '') {
-                const data = JSON.stringify(this.form);
-                const res = await request.postSignIn(data);
-                if (res.data.status === 'success') {
-                    res.data.status === 'success' ? localStorage.setItem('credit', JSON.stringify(res.data)) : null;
-                    this.$router
-                        .go({ name: 'Shops' });
+            try {
+                evt.preventDefault();
+                if (this.form.email !== '' || this.form.password !== '') {
+                    const data = JSON.stringify(this.form);
+                    const res = await request.postSignIn(data);
+                    if (res.status === 'success') {
+                        localStorage.setItem('credit', JSON.stringify(res));
+                        Toast.fire({
+                            icon: 'error',
+                            title: 'Success content',
+                            text: 'Welcome Back Admin'
+                        });
+                        return this.$router.go({ name: 'Shops' });
+                    }
+                    return Toast.fire({
+                        icon: 'error',
+                        title: 'Error content',
+                        text: res.message
+                    });
+                } else {
+                    return Toast.fire({
+                        icon: 'warning',
+                        title: 'Insufficient content',
+                        text: 'You must submit all the form data'
+                    });
                 }
-            } else {
-                alert('Please fill in all the Form');
+            } catch (error) {
+                Toast.fire({
+                    icon: 'error',
+                    title: error.message
+                });
             }
         },
         onReset() {

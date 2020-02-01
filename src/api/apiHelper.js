@@ -39,7 +39,9 @@ export const postRequest = (url, data) => {
     data: data,
     headers: { 'Content-Type': 'application/json' }
   })
-    .then(res => { return res })
+    .then(res => {
+      return res.data
+    })
     .catch(err => {
       return err;
     });

@@ -29,7 +29,7 @@ export default {
                     title: 'SignIn Success',
                     text: 'You will be redirect to shop page'
                 });
-                return this.$router.push('/shops');
+                return this.$router.go({ name: 'Shops' });
             }
         } catch (error) {
             Toast.fire({

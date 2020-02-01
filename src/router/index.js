@@ -41,9 +41,15 @@ const router = new VueRouter({
 })
 
 router.beforeEach(async (to, from , next) => {
+  console.log('credit', credit);
   if(!credit && to.name !=='SignIn' && to.name !=='Line') {
-    next('/line');
-    return;
+    if(to.name === 'SignIn') {
+      next('/signin');
+      return;
+    } else {
+      next('/line');
+      return;
+    }
   }
 
   if (credit) {
@@ -54,7 +60,7 @@ router.beforeEach(async (to, from , next) => {
   }
 
   if (credit && credit.user.isAdmin === false) {
-    if (to.path.includes('/admin/products')) {
+    if (to.path.includes('/admin')) {
       next('/404');
       return;
     }
