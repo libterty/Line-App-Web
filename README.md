@@ -1,4 +1,21 @@
-# client
+# Line App Server
+
+- Simple Line Web App which allows you to login with Line oauth2 login api, after granting token you can access protected routes
+
+# CopyRight
+Copyright © 2020, 11. Released under the MIT License.
+
+## Feature
+
+- Allow User to sigin with Line Login
+- Grant access for User to view shops information
+- Protect shop routes with JOSN WEB TOKEN
+- Grant access for Adminstrator to login to admin routes
+- Grant access for Adminstrator to create & edit & delete shops
+
+## Environment Setup
+
+- [Vue](https://cli.vuejs.org/zh/guide/)
 
 ## Project setup
 ```
@@ -12,12 +29,7 @@ npm run serve
 
 ### Compiles and minifies for production
 ```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
+npm run dev-build
 ```
 
 ### Lints and fixes files
@@ -25,5 +37,10 @@ npm run test
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Run compiles and minifies for production
+```
+npm start
+```
+
+# Author
+- [11](https://github.com/libterty)
