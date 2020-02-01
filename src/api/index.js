@@ -15,6 +15,19 @@ class Request {
     });
   }
 
+  getLogout() {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const res = await getAuthRequest(config.ROOT_URL+'/signout');
+        resolve(
+          res
+        );
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
+
   userInfo() {
     return new Promise(async (resolve, reject) => {
       try {

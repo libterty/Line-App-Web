@@ -12,31 +12,3 @@
         </b-container>
     </section>
 </template>
-
-<script>
-import Request from '../api/index';
-import { Toast } from '../utils/helpers';
-const request = new Request();
-
-export default {
-    async created() {
-        try {
-            const res = await request.userInfo();
-            if (res.status === 'success') {
-                localStorage.setItem('credit', JSON.stringify(res.user));
-                Toast.fire({
-                    icon: 'success',
-                    title: 'SignIn Success',
-                    text: 'You will be redirect to shop page'
-                });
-                return this.$router.go({ name: 'Shops' });
-            }
-        } catch (error) {
-            Toast.fire({
-                icon: 'error',
-                title: error.message
-            });
-        }
-    }
-}
-</script>

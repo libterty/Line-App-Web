@@ -23,6 +23,16 @@ const routes = [
     component: () => import('../views/Line.vue')
   },
   {
+    path: '/line/success',
+    name: 'LineSuccess',
+    component: () => import('../views/LineSuccess.vue')
+  },
+  {
+    path: '/line/fail',
+    name: 'LineFail',
+    component: () => import('../views/LineFail.vue')
+  },
+  {
     path: '/signin',
     name: 'SignIn',
     component: SignIn
@@ -51,7 +61,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach(async (to, from , next) => {
-  if(!credit && to.name !=='SignIn' && to.name !=='Line') {
+  if(!credit && to.name !=='SignIn' && to.name !=='Line' && to.name !== 'LineSuccess' && to.name !== 'LineFail') {
     if(to.name === 'SignIn') {
       next('/signin');
       return;
