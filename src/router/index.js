@@ -1,29 +1,65 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import NotFound from '../views/NotFound.vue';
+import SignIn from '../views/SignIn.vue';
+const credit = JSON.parse(localStorage.getItem('credit'));
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: Home
+    name: 'root',
+    redirect: '/shops' 
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/shops',
+    name: 'Shops',
+    component: () => import('../views/Shop.vue')
+  },
+  {
+    path: '/line',
+    name: 'Line',
+    component: () => import('../views/Line.vue')
+  },
+  {
+    path: '/signin',
+    name: 'SignIn',
+    component: SignIn
+  },
+  {
+    path: '*',
+    name: 'NotFound',
+    component: NotFound
   }
 ]
 
 const router = new VueRouter({
+  linkExactActiveClass: 'active',
   mode: 'history',
-  base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach(async (to, from , next) => {
+  if(!credit && to.name !=='SignIn' && to.name !=='Line') {
+    next('/line');
+    return;
+  }
+
+  if (credit) {
+    if (to.name === 'SignIn' || to.name === 'Line') {
+      next('/shops');
+      return;
+    }
+  }
+
+  if (credit && credit.user.isAdmin === false) {
+    if (to.path.includes('/admin/products')) {
+      next('/404');
+      return;
+    }
+  }
+  next();
 })
 
 export default router

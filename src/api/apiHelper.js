@@ -1,14 +1,19 @@
 import axios from 'axios';
 const auth = JSON.parse(localStorage.getItem('credit')) || null;
+axios.defaults.withCredentials = true;
 
 export const getRequest = url => {
   return axios(url, {
-    headers: { 'Content-Type': 'application/json' }
+    headers: { 
+      'Content-Type': 'application/json',
+    }
   })
     .then(res => {
-      return res;
+      return res.data;
     })
-    .catch(err => console.log('fetch get err', err.message));
+    .catch(err => {
+      return err
+    });
 };
 
 export const getAuthRequest = url => {
@@ -22,7 +27,9 @@ export const getAuthRequest = url => {
   ).then(res => {
     return res.data
   })
-  .catch(err => console.log('fetch GET err', err.message));
+  .catch(err => {
+    return err;
+  });
 }
 
 export const postRequest = (url, data) => {
@@ -33,7 +40,9 @@ export const postRequest = (url, data) => {
     headers: { 'Content-Type': 'application/json' }
   })
     .then(res => { return res })
-    .catch(err => console.log('fetch POST err', err.message));
+    .catch(err => {
+      return err;
+    });
 }
 
 export const postAuthRequest = (url, data) => {
@@ -44,7 +53,9 @@ export const postAuthRequest = (url, data) => {
     headers: { 'Content-Type': 'application/json', Authorization: 'Bearer '+ auth.token}
   })
     .then(res => { return res })
-    .catch(err => console.log('fetch POST Auth err', err.message));
+    .catch(err => {
+      return err;
+    });
 }
 
 export const putAuthRequest = (url, data) => {
@@ -55,7 +66,9 @@ export const putAuthRequest = (url, data) => {
     headers: { 'Content-Type': 'application/json', Authorization: 'Bearer '+ auth.token}
   })
     .then(res => { return res })
-    .catch(err => console.log('fetch PUT Auth err', err.message));
+    .catch(err => {
+      return err;
+    });
 }
 
 export const deleteRequest = url => {
@@ -66,5 +79,7 @@ export const deleteRequest = url => {
   ).then(res => {
     return res
   })
-  .catch(err => console.log('fetch DELETE err', err.message));
+  .catch(err => {
+    return err;
+  });
 }
