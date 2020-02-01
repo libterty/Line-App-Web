@@ -29,7 +29,7 @@ Copyright © 2020, 11. Released under the MIT License.
         email: root@example.com
         password: 12345678
     ```
-- After loging Adminstrator is granted to manage products with CRUD
+- After loging you can access through [here](https://sheltered-brushlands-27967.herokuapp.com/admin/shops), Adminstrator is granted to manage products with CRUD
 ![image](https://github.com/libterty/Line-App-Web/blob/master/src/assets/ShopCMS.png)
 
 ## Environment Setup
