@@ -5,6 +5,8 @@
             <AdminShops
                 :initShops="initShops"
                 @after-submit-create="afterSubmitCreate"
+                @after-submit-edit="afterSubmitEdit"
+                @after-submit-delete="afterSubmitDelete"
             />
         </div>
     </b-container>
@@ -37,7 +39,7 @@ export default {
         } catch (error) {
             return Toast.fire({
                 icon: 'error',
-                title: error
+                title: error.message
             });
         }
     },
@@ -61,7 +63,53 @@ export default {
             } catch (error) {
                 return Toast.fire({
                     icon: 'error',
-                    title: error
+                    title: error.message
+                });
+            }
+        },
+        async afterSubmitEdit(id, data) {
+            try {
+                const res = await request.putShop(id, data);
+                if (res.status === 'success') {
+                    const newRes = await request.getShopsInfo();
+                    this.initShops = newRes.shops;
+                    this.isShow = true;
+                    return Toast.fire({
+                        icon: 'success',
+                        title: 'Update Shop Success'
+                    });
+                }
+                return Toast.fire({
+                    icon: 'error',
+                    title: res.message
+                });
+            } catch (error) {
+                return Toast.fire({
+                    icon: 'error',
+                    title: error.message
+                });
+            }
+        },
+        async afterSubmitDelete(id) {
+            try {
+                const res = await request.deleteShop(id);
+                if (res.status === 'success') {
+                    const newRes = await request.getShopsInfo();
+                    this.initShops = newRes.shops;
+                    this.isShow = true;
+                    return Toast.fire({
+                        icon: 'success',
+                        title: 'Delete Shop Success'
+                    });
+                }
+                return Toast.fire({
+                    icon: 'error',
+                    title: res.message
+                });
+            } catch (error) {
+                return Toast.fire({
+                    icon: 'error',
+                    title: error.message
                 });
             }
         }

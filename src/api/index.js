@@ -1,4 +1,4 @@
-import { getRequest, getAuthRequest, postRequest, postAuthRequest } from './apiHelper';
+import { getRequest, getAuthRequest, postRequest, postAuthRequest, putAuthRequest, deleteRequest } from './apiHelper';
 import config from '../config';
 
 class Request {
@@ -45,6 +45,32 @@ class Request {
     return new Promise(async (resolve, reject) => {
       try {
         const res = await postAuthRequest(config.ROOT_URL+'/shops/create', data);
+        resolve(
+          res
+        );
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
+
+  putShop(id, data) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const res = await putAuthRequest(config.ROOT_URL+`/shops/edit/${id}`, data);
+        resolve(
+          res
+        );
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
+
+  deleteShop(id) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const res = await deleteRequest(config.ROOT_URL+`/shops/delete/${id}`);
         resolve(
           res
         );
