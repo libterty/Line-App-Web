@@ -2,6 +2,8 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import NotFound from '../views/NotFound.vue';
 import SignIn from '../views/SignIn.vue';
+import Shops from '../views/Shop.vue';
+import Line from '../views/Line.vue';
 const credit = JSON.parse(localStorage.getItem('credit'));
 
 Vue.use(VueRouter)
@@ -15,12 +17,12 @@ const routes = [
   {
     path: '/shops',
     name: 'Shops',
-    component: () => import('../views/Shop.vue')
+    component: Shops
   },
   {
     path: '/line',
     name: 'Line',
-    component: () => import('../views/Line.vue')
+    component: Line
   },
   {
     path: '/line/success',
