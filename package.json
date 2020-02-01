@@ -7,6 +7,12 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
+  "keywords": [
+    "Line",
+    "Login"
+  ],
+  "author": "11",
+  "license": "MIT",
   "dependencies": {
     "core-js": "^3.4.4",
     "vue": "^2.6.10",
@@ -30,7 +36,9 @@
       "plugin:vue/essential",
       "eslint:recommended"
     ],
-    "rules": {},
+    "rules": {
+      "no-console": "off"
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }
