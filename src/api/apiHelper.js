@@ -54,7 +54,9 @@ export const postAuthRequest = (url, data) => {
     data: data,
     headers: { 'Content-Type': 'application/json', Authorization: 'Bearer '+ auth.token}
   })
-    .then(res => { return res })
+    .then(res => {
+      return res.data
+    })
     .catch(err => {
       return err;
     });

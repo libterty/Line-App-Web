@@ -1,4 +1,4 @@
-import { getRequest, getAuthRequest, postRequest } from './apiHelper';
+import { getRequest, getAuthRequest, postRequest, postAuthRequest } from './apiHelper';
 import config from '../config';
 
 class Request {
@@ -32,6 +32,19 @@ class Request {
     return new Promise(async (resolve, reject) => {
       try {
         const res = await getAuthRequest(config.ROOT_URL+'/shops');
+        resolve(
+          res
+        );
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
+
+  postNewShop(data) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const res = await postAuthRequest(config.ROOT_URL+'/shops/create', data);
         resolve(
           res
         );

@@ -28,6 +28,16 @@ const routes = [
     component: SignIn
   },
   {
+    path: '/admin',
+    exact: true,
+    redirect: '/admin/shops'
+  },
+  {
+    path: '/admin/shops',
+    name: 'admin-shops',
+    component: () => import('../views/AdminShops.vue')
+  },
+  {
     path: '*',
     name: 'NotFound',
     component: NotFound
@@ -41,7 +51,6 @@ const router = new VueRouter({
 })
 
 router.beforeEach(async (to, from , next) => {
-  console.log('credit', credit);
   if(!credit && to.name !=='SignIn' && to.name !=='Line') {
     if(to.name === 'SignIn') {
       next('/signin');
