@@ -1,9 +1,9 @@
 {
   "name": "client",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "scripts": {
-    "start": "NODE_ENV=production node server.js",
+    "start": "pm2-runtime start ecosystem.config.js --env production",
     "serve": "vue-cli-service serve",
     "dev-build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
@@ -22,6 +22,7 @@
     "connect-history-api-fallback": "^1.6.0",
     "core-js": "^3.4.4",
     "express": "^4.17.1",
+    "pm2": "^4.2.3",
     "sweetalert2": "^9.7.1",
     "vue": "^2.6.10",
     "vue-router": "^3.1.3"

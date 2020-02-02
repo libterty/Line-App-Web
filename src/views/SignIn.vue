@@ -71,7 +71,7 @@ export default {
                     if (res.status === 'success') {
                         localStorage.setItem('credit', JSON.stringify(res));
                         Toast.fire({
-                            icon: 'error',
+                            icon: 'success',
                             title: 'Success content',
                             text: 'Welcome Back Admin'
                         });
